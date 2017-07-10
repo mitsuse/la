@@ -4,17 +4,17 @@ import XCTest
 
 class MatrixTests: XCTestCase {
     func testEquality() {
-        let a = DenseMatrix(n: 3, m: 2, entities: [
+        let a = Matrix.dense(n: 3, m: 2, entities: [
             0, 1,
             2, 3,
             4, 5,
         ])
-        let b = DenseMatrix(n: 3, m: 2, entities: [
+        let b = Matrix.dense(n: 3, m: 2, entities: [
             0, 1,
             2, 3,
             4, 5,
         ])
-        let c = DenseMatrix(n: 4, m: 3, entities: [
+        let c = Matrix.dense(n: 4, m: 3, entities: [
             0, 1, 9,
             2, 3, 9,
             4, 5, 9,

@@ -1,4 +1,4 @@
-public struct DenseMatrix<Field: La.Field>: Matrix {
+struct DenseMatrix<Field: La.Field>: MatrixConvertible {
     public let shape: Shape
     public let entities: [Field]
 
@@ -8,21 +8,21 @@ public struct DenseMatrix<Field: La.Field>: Matrix {
         self.entities = entities
     }
 
-    public subscript(_ i: Int, _ j: Int) -> Field {
+    subscript(_ i: Int, _ j: Int) -> Field {
         return entities[i * shape.n + j]
     }
 
-    public func row(_ i: Int) -> AnyHorizontalArray<Field> {
+    func row(_ i: Int) -> AnyHorizontalArray<Field> {
         return notImplemented()
     }
 
-    public func column(_ j: Int) -> AnyVerticalArray<Field> {
+    func column(_ j: Int) -> AnyVerticalArray<Field> {
         return notImplemented()
     }
 }
 
-extension DenseMatrix {
-    public init(n: Int, m: Int, entities: [Field]) {
-        self.init(shape: Shape(n: n, m: m), entities: entities)
+extension Matrix {
+    public static func dense(n: Int, m: Int, entities: [Field]) -> Matrix<Field> {
+        return Matrix(DenseMatrix(shape: Shape(n: n, m: m), entities: entities))
     }
 }
