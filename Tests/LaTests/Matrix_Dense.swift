@@ -4,7 +4,7 @@ import XCTest
 
 class DenseMatrixTests: XCTestCase {
     func testSubscript() {
-        let a = DenseMatrix(n: 3, m: 2, entities: [
+        let a = Matrix.dense(n: 3, m: 2, entities: [
             0, 1,
             2, 3,
             4, 5,
