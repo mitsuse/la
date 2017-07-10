@@ -1,4 +1,8 @@
-public protocol Arithmetic: Addition {
+public protocol Arithmetic: Signed, Addition, Equatable {
+}
+
+public protocol Signed {
+    static prefix func - (_ a: Self) -> Self
 }
 
 public protocol Addition {

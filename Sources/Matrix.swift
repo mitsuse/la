@@ -36,6 +36,14 @@ extension Matrix {
     public static func create(n: Int, m: Int, _ entities: [Field]) -> Matrix<Field> {
         return Matrix(shape: Shape(n: n, m: m), entities: entities)
     }
+
+    public static func zeros(n: Int, m: Int) -> Matrix<Field> {
+        return Matrix(shape: Shape(n: n, m: m), entities: Array(repeating: Field.zero, count: n * m))
+    }
+}
+
+public prefix func - <Field: La.Field>(_ a: Matrix<Field>) -> Matrix<Field> {
+    return Matrix(shape: a.shape, entities: a.entities.map { -$0 })
 }
 
 public func == <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Bool {
@@ -51,7 +59,8 @@ public func == <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Bool
 }
 
 public func + <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Matrix<Field> {
-    return notImplemented()
+    assert(a.shape == b.shape, "Two matrices should have the same shape.")
+    return Matrix(shape: a.shape, entities: zip(a.entities, b.entities).map { $0 + $1 })
 }
 
 public struct AnyHorizontalArray<Field: La.Field>: HorizontalArray {
