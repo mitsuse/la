@@ -1,4 +1,4 @@
-public protocol MatrixConvertible {
+public protocol MatrixLike {
     associatedtype Field: La.Field
 
     var shape: Shape { get }
@@ -9,24 +9,33 @@ public protocol MatrixConvertible {
     func column(_ j: Int) -> AnyVerticalArray<Field>
 }
 
-public struct Matrix<Field: La.Field>: MatrixConvertible, Equatable {
-    private let _shape: () -> Shape
-    private let _subscript: (Int, Int) -> Field
-    private let _row: (Int) -> AnyHorizontalArray<Field>
-    private let _column: (Int) -> AnyVerticalArray<Field>
+public struct Matrix<Field: La.Field>: MatrixLike, Arithmetic, Equatable {
+    public let shape: Shape
+    public let entities: [Field]
 
-    public var shape: Shape { return _shape() }
-
-    init<M: MatrixConvertible>(_ base: M) where M.Field == Field {
-        self._shape = { base.shape }
-        self._subscript = { (i, j) in base[i, j] }
-        self._row = base.row
-        self._column = base.column
+    fileprivate init(shape: Shape, entities: [Field]) {
+        assert(entities.count == shape.n * shape.m, "The number of entities should be equal to `N * M`.")
+        self.shape = shape
+        self.entities = entities
     }
 
-    public subscript(_ i: Int, _ j: Int) -> Field { return _subscript(i, j) }
-    public func row(_ i: Int) -> AnyHorizontalArray<Field> { return _row(i) }
-    public func column(_ j: Int) -> AnyVerticalArray<Field> { return column(j) }
+    public subscript(_ i: Int, _ j: Int) -> Field {
+        return entities[i * shape.n + j]
+    }
+
+    public func row(_ i: Int) -> AnyHorizontalArray<Field> {
+        return notImplemented()
+    }
+
+    public func column(_ j: Int) -> AnyVerticalArray<Field> {
+        return notImplemented()
+    }
+}
+
+extension Matrix {
+    public static func create(n: Int, m: Int, _ entities: [Field]) -> Matrix<Field> {
+        return Matrix(shape: Shape(n: n, m: m), entities: entities)
+    }
 }
 
 public func == <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Bool {
@@ -39,6 +48,10 @@ public func == <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Bool
         }
     }
     return true
+}
+
+public func + <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Matrix<Field> {
+    return notImplemented()
 }
 
 public struct AnyHorizontalArray<Field: La.Field>: HorizontalArray {
