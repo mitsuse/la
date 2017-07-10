@@ -94,6 +94,20 @@ class MatrixTests: XCTestCase {
         XCTAssertEqual((a + b) + c, a + (b + c))
     }
 
+    func testScalarMultiplication() {
+        let a = 2
+        let b = Matrix.create(n: 2, m: 2, [
+            6, 4,
+            4, 14,
+        ])
+        let c = Matrix.create(n: 2, m: 2, [
+            12, 8,
+            8, 28,
+        ])
+        XCTAssertEqual(a * b, c)
+        XCTAssertEqual(a * b, b * a)
+    }
+
     static let allTests: [(String, (MatrixTests) -> () -> ())] = [
         ("testSubscript", testSubscript),
         ("testEquality", testEquality),
@@ -101,5 +115,6 @@ class MatrixTests: XCTestCase {
         ("testZeroAddition", testZeroAddition),
         ("testAdditiveInverse", testAdditiveInverse),
         ("testAssociativity", testAssociativity),
+        ("testScalarMultiplication", testScalarMultiplication),
     ]
 }
