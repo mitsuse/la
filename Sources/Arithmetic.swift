@@ -1,4 +1,4 @@
-public protocol Arithmetic: Signed, Addition, Equatable {
+public protocol Arithmetic: Signed, Addition, Multiplication, Equatable {
 }
 
 public protocol Signed {
@@ -7,4 +7,8 @@ public protocol Signed {
 
 public protocol Addition {
     static func + (_ a: Self, _ b: Self) -> Self
+}
+
+public protocol Multiplication {
+    static func * (_ a: Self, _ b: Self) -> Self
 }

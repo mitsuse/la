@@ -9,7 +9,7 @@ public protocol MatrixLike {
     func column(_ j: Int) -> AnyVerticalArray<Field>
 }
 
-public struct Matrix<Field: La.Field>: MatrixLike, Arithmetic, Equatable {
+public struct Matrix<Field: La.Field>: MatrixLike, Addition, Equatable {
     public let shape: Shape
     public let entities: [Field]
 
@@ -61,6 +61,14 @@ public func == <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Bool
 public func + <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Matrix<Field> {
     assert(a.shape == b.shape, "Two matrices should have the same shape.")
     return Matrix(shape: a.shape, entities: zip(a.entities, b.entities).map { $0 + $1 })
+}
+
+public func * <Field: La.Field>(_ a: Field, _ b: Matrix<Field>) -> Matrix<Field> {
+    return Matrix(shape: b.shape, entities: b.entities.map { a * $0 })
+}
+
+public func * <Field: La.Field>(_ b: Matrix<Field>, _ a: Field) -> Matrix<Field> {
+    return a * b
 }
 
 public struct AnyHorizontalArray<Field: La.Field>: HorizontalArray {
