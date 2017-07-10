@@ -36,15 +36,7 @@ public prefix func - <Field: La.Field>(_ a: Matrix<Field>) -> Matrix<Field> {
 }
 
 public func == <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Bool {
-    guard a.shape == b.shape else { return false }
-    for m in 0..<a.shape.m {
-        for n in 0..<a.shape.n {
-            if a[m, n] != b[m, n] {
-                return false
-            }
-        }
-    }
-    return true
+    return a.shape == b.shape && a.entities == b.entities
 }
 
 public func + <Field: La.Field>(_ a: Matrix<Field>, _ b: Matrix<Field>) -> Matrix<Field> {
