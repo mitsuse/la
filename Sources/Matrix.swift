@@ -4,9 +4,6 @@ public protocol MatrixLike {
     var shape: Shape { get }
 
     subscript(_ i: Int, _ j: Int) -> Field { get }
-
-    func row(_ i: Int) -> AnyHorizontalArray<Field>
-    func column(_ j: Int) -> AnyVerticalArray<Field>
 }
 
 public struct Matrix<Field: La.Field>: MatrixLike, Addition, Equatable {
@@ -21,14 +18,6 @@ public struct Matrix<Field: La.Field>: MatrixLike, Addition, Equatable {
 
     public subscript(_ i: Int, _ j: Int) -> Field {
         return entities[i * shape.n + j]
-    }
-
-    public func row(_ i: Int) -> AnyHorizontalArray<Field> {
-        return notImplemented()
-    }
-
-    public func column(_ j: Int) -> AnyVerticalArray<Field> {
-        return notImplemented()
     }
 }
 
@@ -69,28 +58,4 @@ public func * <Field: La.Field>(_ a: Field, _ b: Matrix<Field>) -> Matrix<Field>
 
 public func * <Field: La.Field>(_ b: Matrix<Field>, _ a: Field) -> Matrix<Field> {
     return a * b
-}
-
-public struct AnyHorizontalArray<Field: La.Field>: HorizontalArray {
-    public subscript(_ i: Int) -> Field {
-        return notImplemented()
-    }
-}
-
-public protocol HorizontalArray {
-    associatedtype Field: La.Field
-
-    subscript(_ i: Int) -> Field { get }
-}
-
-public struct AnyVerticalArray<Field: La.Field>: VerticalArray {
-    public subscript(_ j: Int) -> Field {
-        return notImplemented()
-    }
-}
-
-public protocol VerticalArray {
-    associatedtype Field: La.Field
-
-    subscript(_ j: Int) -> Field { get }
 }
