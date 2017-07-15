@@ -2,9 +2,9 @@ import XCTest
 
 @testable import La
 
-class MatrixTests: XCTestCase {
+class UntypedMatrixTests: XCTestCase {
     func testSubscript() {
-        let a = Matrix.create(n: 3, m: 2, [
+        let a = UntypedMatrix.create(n: 3, m: 2, [
             0, 1,
             2, 3,
             4, 5,
@@ -13,17 +13,17 @@ class MatrixTests: XCTestCase {
     }
 
     func testEquality() {
-        let a = Matrix.create(n: 3, m: 2, [
+        let a = UntypedMatrix.create(n: 3, m: 2, [
             0, 1,
             2, 3,
             4, 5,
         ])
-        let b = Matrix.create(n: 3, m: 2, [
+        let b = UntypedMatrix.create(n: 3, m: 2, [
             0, 1,
             2, 3,
             4, 5,
         ])
-        let c = Matrix.create(n: 4, m: 3, [
+        let c = UntypedMatrix.create(n: 4, m: 3, [
             0, 1, 9,
             2, 3, 9,
             4, 5, 9,
@@ -36,17 +36,17 @@ class MatrixTests: XCTestCase {
     }
 
     func testAddition() {
-        let a = Matrix.create(n: 3, m: 2, [
+        let a = UntypedMatrix.create(n: 3, m: 2, [
             0, -1,
             2, -3,
             4, -5,
         ])
-        let b = Matrix.create(n: 3, m: 2, [
+        let b = UntypedMatrix.create(n: 3, m: 2, [
             0, 1,
             2, 3,
             4, 5,
         ])
-        let c = Matrix.create(n: 3, m: 2, [
+        let c = UntypedMatrix.create(n: 3, m: 2, [
             0, 0,
             4, 0,
             8, 0,
@@ -56,37 +56,37 @@ class MatrixTests: XCTestCase {
     }
 
     func testZeroAddition() {
-        let a = Matrix.create(n: 3, m: 2, [
+        let a = UntypedMatrix.create(n: 3, m: 2, [
             0, -1,
             2, -3,
             4, -5,
         ])
-        let z = Matrix<Int>.zeros(n: 3, m: 2)
+        let z = UntypedMatrix<Int>.zeros(n: 3, m: 2)
         XCTAssertEqual(a + z, a)
     }
 
     func testAdditiveInverse() {
-        let a = Matrix.create(n: 3, m: 2, [
+        let a = UntypedMatrix.create(n: 3, m: 2, [
             0, -1,
             2, -3,
             4, -5,
         ])
         let inverse = -a
-        XCTAssertEqual(a + inverse, Matrix<Int>.zeros(n: a.shape.n, m: a.shape.m))
+        XCTAssertEqual(a + inverse, UntypedMatrix<Int>.zeros(n: a.shape.n, m: a.shape.m))
     }
 
     func testAssociativity() {
-        let a = Matrix.create(n: 3, m: 2, [
+        let a = UntypedMatrix.create(n: 3, m: 2, [
             0, -1,
             2, -3,
             4, -5,
         ])
-        let b = Matrix.create(n: 3, m: 2, [
+        let b = UntypedMatrix.create(n: 3, m: 2, [
             0, 1,
             2, 3,
             4, 5,
         ])
-        let c = Matrix.create(n: 3, m: 2, [
+        let c = UntypedMatrix.create(n: 3, m: 2, [
             1, 2,
             3, 4,
             5, 6,
@@ -96,11 +96,11 @@ class MatrixTests: XCTestCase {
 
     func testScalarMultiplication() {
         let a = 2
-        let b = Matrix.create(n: 2, m: 2, [
+        let b = UntypedMatrix.create(n: 2, m: 2, [
             6, 4,
             4, 14,
         ])
-        let c = Matrix.create(n: 2, m: 2, [
+        let c = UntypedMatrix.create(n: 2, m: 2, [
             12, 8,
             8, 28,
         ])
@@ -108,7 +108,7 @@ class MatrixTests: XCTestCase {
         XCTAssertEqual(a * b, b * a)
     }
 
-    static let allTests: [(String, (MatrixTests) -> () -> ())] = [
+    static let allTests: [(String, (UntypedMatrixTests) -> () -> ())] = [
         ("testSubscript", testSubscript),
         ("testEquality", testEquality),
         ("testAddition", testAddition),
