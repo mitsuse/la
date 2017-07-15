@@ -2,7 +2,7 @@ import XCTest
 
 @testable import La
 
-final class UntypedMatrixTests: XCTestCase, Tests {
+final class MatrixTests: XCTestCase, Tests {
     func testSubscript() {
         let a = UntypedMatrix.create(n: 3, m: 2, [
             0, 1,
@@ -108,7 +108,7 @@ final class UntypedMatrixTests: XCTestCase, Tests {
         XCTAssertEqual(a * b, b * a)
     }
 
-    static let allTests: [(String, (UntypedMatrixTests) -> () -> ())] = [
+    static let allTests: [(String, (MatrixTests) -> () -> ())] = [
         ("testSubscript", testSubscript),
         ("testEquality", testEquality),
         ("testAddition", testAddition),
