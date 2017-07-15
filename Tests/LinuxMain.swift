@@ -1,6 +1,7 @@
 import XCTest
-@testable import la_swiftTests
+
+@testable import LaTests
 
 XCTMain([
-    testCase(LaTests.allTests),
+    testCase(UntypedMatrixTests.allTests),
 ])
