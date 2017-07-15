@@ -2,7 +2,7 @@ import XCTest
 
 @testable import La
 
-class UntypedMatrixTests: XCTestCase {
+final class UntypedMatrixTests: XCTestCase, Tests {
     func testSubscript() {
         let a = UntypedMatrix.create(n: 3, m: 2, [
             0, 1,
