@@ -1,4 +1,6 @@
-public typealias UntypedMatrix<Field: La.Field> = Matrix<Untyped, Field>
+public enum UntypedTrait {}
+
+public typealias UntypedMatrix<Field: La.Field> = Matrix<UntypedTrait, Field>
 
 extension UntypedMatrix {
     public static func create(n: Int, m: Int, _ entities: [Field]) -> UntypedMatrix<Field> {
