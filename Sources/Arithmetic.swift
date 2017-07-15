@@ -12,3 +12,7 @@ public protocol Addition {
 public protocol Multiplication {
     static func * (_ a: Self, _ b: Self) -> Self
 }
+
+public protocol PartialAddition {
+    static func + (_ a: Self, _ b: Self) -> Result<Self>
+}
