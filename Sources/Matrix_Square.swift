@@ -8,6 +8,6 @@ extension Matrix where Trait == Square {
     }
 }
 
-extension Matrix where Trait: SquareTrait {
+extension Matrix where Trait.Relation == Equal {
     public var order: Int { return shape.n }
 }

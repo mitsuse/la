@@ -8,5 +8,5 @@ extension Matrix where Trait == OneByOne {
     }
 }
 
-extension Matrix where Trait: OneByOneTrait {
+extension Matrix where Trait.M == Single, Trait.N == Single, Trait.Relation == Equal {
 }

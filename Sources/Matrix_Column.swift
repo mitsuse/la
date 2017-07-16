@@ -8,5 +8,5 @@ extension Matrix where Trait == Column {
     }
 }
 
-extension Matrix where Trait: ColumnTrait {
+extension Matrix where Trait.N == Single {
 }
