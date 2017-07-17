@@ -95,7 +95,7 @@ final class MatrixTests: XCTestCase, Tests {
             4, -5,
         ])!
         let z = Matrix<Three, Two, Int>.zeros()
-        XCTAssertTrue(a + z == a)
+        XCTAssertEqual(a + z, a)
     }
 
     func testAdditiveInverse() {
@@ -137,8 +137,8 @@ final class MatrixTests: XCTestCase, Tests {
             12, 8,
             8, 28,
         ])!
-        XCTAssertTrue(a * b == c)
-        XCTAssertTrue(a * b == b * a)
+        XCTAssertEqual(a * b, c)
+        XCTAssertEqual(a * b, b * a)
     }
 
     func testMultiplication() {
