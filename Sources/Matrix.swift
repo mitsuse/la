@@ -39,3 +39,17 @@ public func * <M: Size, N: Size, Field: La.Field>(_ a: Field, _ b: Matrix<M, N, 
 public func * <M: Size, N: Size, Field: La.Field>(_ b: Matrix<M, N, Field>, _ a: Field) -> Matrix<M, N, Field> {
     return a * b
 }
+
+public func * <M: Size, N: Size, P: Size, Field: La.Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<N, P, Field>) -> Matrix<M, P, Field> {
+    var entities = Array(repeating: Field.zero, count: M.value * P.value)
+    for i in (0..<M.value) {
+        for j in (0..<P.value) {
+            var entity = Field.zero
+            for k in (0..<N.value) {
+                 entity = entity + a[i, k] * b[k, j]
+            }
+            entities[i * P.value + j] = entity
+        }
+    }
+    return Matrix(entities)!
+}

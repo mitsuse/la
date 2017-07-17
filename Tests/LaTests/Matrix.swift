@@ -5,6 +5,7 @@ import XCTest
 private enum Zero: Size { static let value: Int = 0 }
 private enum Two: Size { static let value: Int = 2 }
 private enum Three: Size { static let value: Int = 3 }
+private enum Four: Size { static let value: Int = 4 }
 
 final class MatrixTests: XCTestCase, Tests {
     func testCreate() {
@@ -140,6 +141,25 @@ final class MatrixTests: XCTestCase, Tests {
         XCTAssertTrue(a * b == b * a)
     }
 
+    func testMultiplication() {
+        let a = Matrix<Three, Three, Int>([
+            1, 1, 2,
+            1, 2, 3,
+            1, 4, 9,
+        ])!
+        let b = Matrix<Three, Two, Int>([
+            0, 1,
+            1, -1,
+            2, 0,
+        ])!
+        let c = Matrix<Three, Two, Int>([
+            5, 0,
+            8, -1,
+            22, -3,
+        ])!
+        XCTAssertEqual(a * b, c)
+    }
+
     static let allTests: [(String, (MatrixTests) -> () -> ())] = [
         ("testCreate", testCreate),
         ("testSubscript", testSubscript),
@@ -149,5 +169,6 @@ final class MatrixTests: XCTestCase, Tests {
         ("testAdditiveInverse", testAdditiveInverse),
         ("testAssociativity", testAssociativity),
         ("testScalarMultiplication", testScalarMultiplication),
+        ("testMultiplication", testMultiplication),
     ]
 }
