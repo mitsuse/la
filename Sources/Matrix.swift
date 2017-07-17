@@ -1,57 +1,41 @@
-public struct Matrix<Trait: La.Trait, Field: La.Field>: Equatable, Subscriptable2, Signed, PartialAddition {
-    public let shape: Shape
+public struct Matrix<M: Size, N: Size, Field: La.Field>: Equatable, Signed, Addition {
     public let entities: [Field]
 
-    fileprivate init(shape: Shape, entities: [Field]) {
-        self.shape = shape
+    public var m: Int { return M.self.value }
+    public var n: Int { return N.self.value }
+
+    init?(_ entities: [Field]) {
+        guard entities.count == M.value * N.value && M.value > 0 && N.value > 0 else { return nil }
         self.entities = entities
     }
 
-    static func initialize(shape: Shape, entities: [Field]) -> Result<Matrix<Trait, Field>> {
-        return
-            entities.count == shape.n * shape.m && shape.n > 0 && shape.m > 0
-                ? .defined(Matrix(shape: shape, entities: entities))
-                : .undefined
-    }
-
     public subscript(_ i: Int, _ j: Int) -> Field {
-        return entities[i * shape.n + j]
+        return entities[i * n + j]
     }
 }
 
-public prefix func - <Trait: La.Trait, Field: La.Field>(_ a: Matrix<Trait, Field>) -> Matrix<Trait, Field> {
-    return Matrix(shape: a.shape, entities: a.entities.map { -$0 })
+extension Matrix {
+    public static func zeros() -> Matrix<M, N, Field> {
+        return Matrix(Array(repeating: Field.zero, count: M.value * N.value))!
+    }
 }
 
-public func == <Trait: La.Trait, Field: La.Field>(_ a: Matrix<Trait, Field>, _ b: Matrix<Trait, Field>) -> Bool {
-    return a.shape == b.shape && a.entities == b.entities
+public prefix func - <M: Size, N: Size, Field: La.Field>(_ a: Matrix<M, N, Field>) -> Matrix<M, N, Field> {
+    return Matrix(a.entities.map { -$0 })!
 }
 
-public func + <Trait: La.Trait, Field: La.Field>(_ a: Matrix<Trait, Field>, _ b: Matrix<Trait, Field>) -> Result<Matrix<Trait, Field>> {
-    return
-        a.shape == b.shape
-            ? .defined(Matrix(shape: a.shape, entities: zip(a.entities, b.entities).map { $0 + $1 }))
-            : .undefined
+public func == <M: Size, N: Size, Field: La.Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<M, N, Field>) -> Bool {
+    return a.entities == b.entities
 }
 
-public func * <Trait: La.Trait, Field: La.Field>(_ a: Field, _ b: Matrix<Trait, Field>) -> Matrix<Trait, Field> {
-    return Matrix(shape: b.shape, entities: b.entities.map { a * $0 })
+public func + <M: Size, N: Size, Field: La.Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<M, N, Field>) -> Matrix<M, N, Field> {
+    return Matrix(zip(a.entities, b.entities).map { $0 + $1 })!
 }
 
-public func * <Trait: La.Trait, Field: La.Field>(_ b: Matrix<Trait, Field>, _ a: Field) -> Matrix<Trait, Field> {
+public func * <M: Size, N: Size, Field: La.Field>(_ a: Field, _ b: Matrix<M, N, Field>) -> Matrix<M, N, Field> {
+    return Matrix(b.entities.map { a * $0 })!
+}
+
+public func * <M: Size, N: Size, Field: La.Field>(_ b: Matrix<M, N, Field>, _ a: Field) -> Matrix<M, N, Field> {
     return a * b
-}
-
-public func * <Trait: La.Trait, Field: La.Field>(_ a: Field, _ b: Result<Matrix<Trait, Field>>) -> Result<Matrix<Trait, Field>> {
-    switch b {
-    case let .defined(b): return .defined(a * b)
-    case .undefined: return .undefined
-    }
-}
-
-public func * <Trait: La.Trait, Field: La.Field>(_ b: Result<Matrix<Trait, Field>>, _ a: Field) -> Result<Matrix<Trait, Field>> {
-    switch b {
-    case let .defined(b): return .defined(a * b)
-    case .undefined: return .undefined
-    }
 }
