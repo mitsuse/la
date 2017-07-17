@@ -2,11 +2,6 @@ import XCTest
 
 @testable import La
 
-private enum Zero: Size { static let value: Int = 0 }
-private enum Two: Size { static let value: Int = 2 }
-private enum Three: Size { static let value: Int = 3 }
-private enum Four: Size { static let value: Int = 4 }
-
 final class MatrixTests: XCTestCase, Tests {
     func testCreate() {
         let a = Matrix<Three, Two, Int>([
