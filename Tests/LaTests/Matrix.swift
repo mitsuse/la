@@ -2,158 +2,142 @@ import XCTest
 
 @testable import La
 
+private enum Zero: Size { static let value: Int = 0 }
+private enum Two: Size { static let value: Int = 2 }
+private enum Three: Size { static let value: Int = 3 }
+
 final class MatrixTests: XCTestCase, Tests {
     func testCreate() {
-        let a = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let a = Matrix<Three, Two, Int>([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let b = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let b = Matrix<Three, Two, Int>([
             0, 1,
             2, 3,
         ])
-        let c = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let c = Matrix<Three, Two, Int>([
             0,
             2,
             4,
         ])
-        let d = Matrix<Untyped, Int>.create(n: 2, m: 2, [
+        let d = Matrix<Two, Two, Int>([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let e = Matrix<Untyped, Int>.create(n: 3, m: 1, [
+        let e = Matrix<Three, One, Int>([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let f = Matrix<Untyped, Int>.create(n: 0, m: 1, [])
-        let g = Matrix<Untyped, Int>.create(n: 1, m: 0, [])
-        XCTAssertTrue(a.isDefined)
-        XCTAssertFalse(b.isDefined)
-        XCTAssertFalse(c.isDefined)
-        XCTAssertFalse(d.isDefined)
-        XCTAssertFalse(e.isDefined)
-        XCTAssertFalse(f.isDefined)
-        XCTAssertFalse(g.isDefined)
+        let f = Matrix<Zero, One, Int>([])
+        let g = Matrix<One, Zero, Int>([])
+        XCTAssertNotNil(a)
+        XCTAssertNil(b)
+        XCTAssertNil(c)
+        XCTAssertNil(d)
+        XCTAssertNil(e)
+        XCTAssertNil(f)
+        XCTAssertNil(g)
     }
 
     func testSubscript() {
-        let a = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let a = Matrix<Three, Two, Int>([
             0, 1,
             2, 3,
             4, 5,
-        ])
-        let x = Result.defined(1)
-        XCTAssertTrue(a[0, 1] == x)
+        ])!
+        XCTAssertEqual(a[0, 1], 1)
     }
 
     func testEquality() {
-        let a = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let a = Matrix<Three, Two, Int>([
             0, 1,
             2, 3,
             4, 5,
-        ])
-        let b = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        ])!
+        let b = Matrix<Three, Two, Int>([
             0, 1,
             2, 3,
             4, 5,
-        ])
-        let c = Matrix<Untyped, Int>.create(n: 4, m: 3, [
-            0, 1, 9,
-            2, 3, 9,
-            4, 5, 9,
-            7, 7, 8,
-        ])
-        XCTAssertTrue(a == b)
-        XCTAssertTrue(b == a)
-        XCTAssertFalse(a == c)
-        XCTAssertFalse(c == b)
+        ])!
+        XCTAssertEqual(a, b)
+        XCTAssertEqual(b, a)
     }
 
     func testAddition() {
-        let a = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let a = Matrix<Three, Two, Int>([
             0, -1,
             2, -3,
             4, -5,
-        ])
-        let b = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        ])!
+        let b = Matrix<Three, Two, Int>([
             0, 1,
             2, 3,
             4, 5,
-        ])
-        let c = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        ])!
+        let c = Matrix<Three, Two, Int>([
             0, 0,
             4, 0,
             8, 0,
-        ])
-        XCTAssertTrue(a + b == c)
-        XCTAssertTrue(b + a == c)
-        XCTAssertTrue(c.isDefined)
+        ])!
+        XCTAssertEqual(a + b, c)
+        XCTAssertEqual(b + a, c)
     }
 
     func testZeroAddition() {
-        let a = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let a = Matrix<Three, Two, Int>([
             0, -1,
             2, -3,
             4, -5,
-        ])
-        let z = Matrix<Untyped, Int>.zeros(n: 3, m: 2)
+        ])!
+        let z = Matrix<Three, Two, Int>.zeros()
         XCTAssertTrue(a + z == a)
-        XCTAssertTrue(z.isDefined)
     }
 
     func testAdditiveInverse() {
-        let a = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let a = Matrix<Three, Two, Int>([
             0, -1,
             2, -3,
             4, -5,
-        ])
+        ])!
         let inverse = -a
-        XCTAssertTrue(a + inverse == Matrix<Untyped, Int>.zeros(n: 3, m: 2))
-        XCTAssertTrue(a.isDefined)
+        XCTAssertEqual(a + inverse, Matrix<Three, Two, Int>.zeros())
     }
 
     func testAssociativity() {
-        let a = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        let a = Matrix<Three, Two, Int>([
             0, -1,
             2, -3,
             4, -5,
-        ])
-        let b = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        ])!
+        let b = Matrix<Three, Two, Int>([
             0, 1,
             2, 3,
             4, 5,
-        ])
-        let c = Matrix<Untyped, Int>.create(n: 3, m: 2, [
+        ])!
+        let c = Matrix<Three, Two, Int>([
             1, 2,
             3, 4,
             5, 6,
-        ])
-        let left = (a + b) + c
-        let right = a + (b + c)
-        XCTAssertTrue(left == right)
+        ])!
+        XCTAssertEqual((a + b) + c, a + (b + c))
     }
 
     func testScalarMultiplication() {
         let a = 2
-        let b = Matrix<Untyped, Int>.create(n: 2, m: 2, [
+        let b = Matrix<Two, Two, Int>([
             6, 4,
             4, 14,
-        ])
-        let c = Matrix<Untyped, Int>.create(n: 2, m: 2, [
+        ])!
+        let c = Matrix<Two, Two, Int>([
             12, 8,
             8, 28,
-        ])
-        let d: Result<Matrix<Untyped, Int>> = .undefined
+        ])!
         XCTAssertTrue(a * b == c)
         XCTAssertTrue(a * b == b * a)
-        XCTAssertTrue(a * d == d)
-        XCTAssertTrue(d * a == d)
-        XCTAssertTrue(b.isDefined)
-        XCTAssertTrue(c.isDefined)
-        XCTAssertFalse(d.isDefined)
     }
 
     static let allTests: [(String, (MatrixTests) -> () -> ())] = [
