@@ -1,5 +1,9 @@
 ## Unreleased
 
+## 0.1.1
+
+- Fix: The initializer of `Matrix` becomes public.
+
 ## 0.1.0
 
 - Support some operations:
