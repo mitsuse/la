@@ -1,5 +1,7 @@
 ## Unreleased
 
+## 0.2.0
+
 - Support transpose.
     - The performance has not been optimized yet.
 
