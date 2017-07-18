@@ -4,7 +4,7 @@ public struct Matrix<M: Size, N: Size, Field: La.Field>: Equatable, Signed, Addi
     public var m: Int { return M.self.value }
     public var n: Int { return N.self.value }
 
-    init?(_ entities: [Field]) {
+    public init?(_ entities: [Field]) {
         guard entities.count == M.value * N.value && M.value > 0 && N.value > 0 else { return nil }
         self.entities = entities
     }
