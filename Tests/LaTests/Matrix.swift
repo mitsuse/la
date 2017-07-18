@@ -155,6 +155,19 @@ final class MatrixTests: XCTestCase, Tests {
         XCTAssertEqual(a * b, c)
     }
 
+    func testTranspose() {
+        let a = Matrix<Three, Two, Int>([
+            0, 1,
+            2, 3,
+            4, 5,
+        ])!
+        let b = Matrix<Two, Three, Int>([
+            0, 2, 4,
+            1, 3, 5,
+        ])
+        XCTAssertEqual(a.t, b)
+    }
+
     static let allTests: [(String, (MatrixTests) -> () -> ())] = [
         ("testCreate", testCreate),
         ("testSubscript", testSubscript),
@@ -165,5 +178,6 @@ final class MatrixTests: XCTestCase, Tests {
         ("testAssociativity", testAssociativity),
         ("testScalarMultiplication", testScalarMultiplication),
         ("testMultiplication", testMultiplication),
+        ("testTranspose", testTranspose),
     ]
 }

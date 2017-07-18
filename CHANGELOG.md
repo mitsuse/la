@@ -1,5 +1,8 @@
 ## Unreleased
 
+- Support transpose.
+    - The performance has not been optimized yet.
+
 ## 0.1.1
 
 - Fix: The initializer of `Matrix` becomes public.

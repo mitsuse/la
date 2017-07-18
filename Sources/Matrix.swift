@@ -15,6 +15,16 @@ public struct Matrix<M: Size, N: Size, Field: La.Field>: Equatable, Signed, Addi
 }
 
 extension Matrix {
+    public var t: Matrix<N, M, Field> {
+        var entities = Array(repeating: Field.zero, count: N.value * M.value)
+        for i in (0..<n) {
+            for j in (0..<m) {
+                entities[i * M.value + j] = self[j, i]
+            }
+        }
+        return Matrix<N, M, Field>(entities)!
+    }
+
     public static func zeros() -> Matrix<M, N, Field> {
         return Matrix(Array(repeating: Field.zero, count: M.value * N.value))!
     }
