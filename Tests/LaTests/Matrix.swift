@@ -168,6 +168,13 @@ final class MatrixTests: XCTestCase, Tests {
         XCTAssertEqual(a.t, b)
     }
 
+    func testMeasureMultiplication() {
+        let a = Matrix<_100, _100, Float>.fill(0.1)
+        measure {
+            _ = a * a
+        }
+    }
+
     static let allTests: [(String, (MatrixTests) -> () -> ())] = [
         ("testCreate", testCreate),
         ("testSubscript", testSubscript),
@@ -179,5 +186,6 @@ final class MatrixTests: XCTestCase, Tests {
         ("testScalarMultiplication", testScalarMultiplication),
         ("testMultiplication", testMultiplication),
         ("testTranspose", testTranspose),
+        ("testMeasureMultiplication", testMeasureMultiplication),
     ]
 }

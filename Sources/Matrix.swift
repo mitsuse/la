@@ -26,7 +26,11 @@ extension Matrix {
     }
 
     public static func zeros() -> Matrix<M, N, Field> {
-        return Matrix(Array(repeating: Field.zero, count: M.value * N.value))!
+        return fill(Field.zero)
+    }
+
+    public static func fill(_ entity: Field) -> Matrix<M, N, Field> {
+        return Matrix(Array(repeating: entity, count: M.value * N.value))!
     }
 }
 
