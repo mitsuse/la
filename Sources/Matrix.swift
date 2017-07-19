@@ -1,6 +1,6 @@
 import Accelerate
 
-public struct Matrix<M: Size, N: Size>: Equatable {
+public struct Matrix<M: Size, N: Size>: Equatable, Signed, Addition {
     fileprivate let object: la_object_t
 
     public var m: UInt { return M.self.value }
