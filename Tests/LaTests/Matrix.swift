@@ -4,32 +4,32 @@ import XCTest
 
 final class MatrixTests: XCTestCase, Tests {
     func testCreate() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let b = Matrix<Three, Two>([
+        let b = Matrix<Three, Two, Float>([
             0, 1,
             2, 3,
         ])
-        let c = Matrix<Three, Two>([
+        let c = Matrix<Three, Two, Float>([
             0,
             2,
             4,
         ])
-        let d = Matrix<Two, Two>([
+        let d = Matrix<Two, Two, Float>([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let e = Matrix<Three, One>([
+        let e = Matrix<Three, One, Float>([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let f = Matrix<Zero, One>([])
-        let g = Matrix<One, Zero>([])
+        let f = Matrix<Zero, One, Float>([])
+        let g = Matrix<One, Zero, Float>([])
         XCTAssertNotNil(a)
         XCTAssertNil(b)
         XCTAssertNil(c)
@@ -45,12 +45,12 @@ final class MatrixTests: XCTestCase, Tests {
             2, 3,
             4, 5,
         ]
-        let a = Matrix<Three, Two>(entities)!
+        let a = Matrix<Three, Two, Float>(entities)!
         XCTAssertEqual(a.entities, entities)
     }
 
     func testSubscript() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, 1,
             2, 3,
             4, 5,
@@ -59,12 +59,12 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testEquality() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, 1,
             2, 3,
             4, 5,
         ])!
-        let b = Matrix<Three, Two>([
+        let b = Matrix<Three, Two, Float>([
             0, 1,
             2, 3,
             4, 5,
@@ -74,17 +74,17 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testAddition() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, -1,
             2, -3,
             4, -5,
         ])!
-        let b = Matrix<Three, Two>([
+        let b = Matrix<Three, Two, Float>([
             0, 1,
             2, 3,
             4, 5,
         ])!
-        let c = Matrix<Three, Two>([
+        let c = Matrix<Three, Two, Float>([
             0, 0,
             4, 0,
             8, 0,
@@ -94,17 +94,17 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testSubstraction() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, -1,
             2, -3,
             4, -5,
         ])!
-        let b = Matrix<Three, Two>([
+        let b = Matrix<Three, Two, Float>([
             -0, -1,
             -2, -3,
             -4, -5,
         ])!
-        let c = Matrix<Three, Two>([
+        let c = Matrix<Three, Two, Float>([
             0, 0,
             4, 0,
             8, 0,
@@ -113,37 +113,37 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testZeroAddition() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, -1,
             2, -3,
             4, -5,
         ])!
-        let z = Matrix<Three, Two>.zeros()
+        let z = Matrix<Three, Two, Float>.zeros()
         XCTAssertEqual(a + z, a)
     }
 
     func testAdditiveInverse() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, -1,
             2, -3,
             4, -5,
         ])!
         let inverse = -a
-        XCTAssertEqual(a + inverse, Matrix<Three, Two>.zeros())
+        XCTAssertEqual(a + inverse, Matrix<Three, Two, Float>.zeros())
     }
 
     func testAssociativity() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, -1,
             2, -3,
             4, -5,
         ])!
-        let b = Matrix<Three, Two>([
+        let b = Matrix<Three, Two, Float>([
             0, 1,
             2, 3,
             4, 5,
         ])!
-        let c = Matrix<Three, Two>([
+        let c = Matrix<Three, Two, Float>([
             1, 2,
             3, 4,
             5, 6,
@@ -153,11 +153,11 @@ final class MatrixTests: XCTestCase, Tests {
 
     func testScalarMultiplication() {
         let a: Float = 2
-        let b = Matrix<Two, Two>([
+        let b = Matrix<Two, Two, Float>([
             6, 4,
             4, 14,
         ])!
-        let c = Matrix<Two, Two>([
+        let c = Matrix<Two, Two, Float>([
             12, 8,
             8, 28,
         ])!
@@ -166,17 +166,17 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testMultiplication() {
-        let a = Matrix<Three, Three>([
+        let a = Matrix<Three, Three, Float>([
             1, 1, 2,
             1, 2, 3,
             1, 4, 9,
         ])!
-        let b = Matrix<Three, Two>([
+        let b = Matrix<Three, Two, Float>([
             0, 1,
             1, -1,
             2, 0,
         ])!
-        let c = Matrix<Three, Two>([
+        let c = Matrix<Three, Two, Float>([
             5, 0,
             8, -1,
             22, -3,
@@ -185,53 +185,16 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testTranspose() {
-        let a = Matrix<Three, Two>([
+        let a = Matrix<Three, Two, Float>([
             0, 1,
             2, 3,
             4, 5,
         ])!
-        let b = Matrix<Two, Three>([
+        let b = Matrix<Two, Three, Float>([
             0, 2, 4,
             1, 3, 5,
         ])
         XCTAssertEqual(a.t, b)
-    }
-
-    func testMeasureSubcript() {
-        let a = Matrix<_1000, _1000>.fill(0.1)
-        measure { _ = a[10, 2] }
-    }
-
-    func testMeasureEquality() {
-        let a = Matrix<_1000, _1000>.fill(0.1)
-        let b = Matrix<_1000, _1000>.fill(0.1)
-        measure { _ = a == b }
-    }
-
-    func testMeasureAddition() {
-        let a = Matrix<_1000, _1000>.fill(0.1)
-        measure { _ = (a + a).entities }
-    }
-
-    func testMeasureSubtraction() {
-        let a = Matrix<_1000, _1000>.fill(0.1)
-        let b = Matrix<_1000, _1000>.fill(0.3)
-        measure { _ = (a - b).entities }
-    }
-
-    func testMeasureScalarMultiplication() {
-        let a = Matrix<_1000, _1000>.fill(0.1)
-        measure { _ = (0.1 * a).entities }
-    }
-
-    func testMeasureMultiplication() {
-        let a = Matrix<_1000, _1000>.fill(0.1)
-        measure { _ = (a * a).entities }
-    }
-
-    func testMeasureTranspose() {
-        let a = Matrix<_1000, _1000>.fill(0.1)
-        measure { _ = a.t.entities }
     }
 
     static let allTests: [(String, (MatrixTests) -> () -> ())] = [
@@ -247,12 +210,5 @@ final class MatrixTests: XCTestCase, Tests {
         ("testScalarMultiplication", testScalarMultiplication),
         ("testMultiplication", testMultiplication),
         ("testTranspose", testTranspose),
-        ("testMeasureSubcript", testMeasureSubcript),
-        ("testMeasureEquality", testMeasureEquality),
-        ("testMeasureAddition", testMeasureAddition),
-        ("testMeasureSubtraction", testMeasureSubtraction),
-        ("testMeasureScalarMultiplication", testMeasureScalarMultiplication),
-        ("testMeasureMultiplication", testMeasureMultiplication),
-        ("testMeasureTranspose", testMeasureTranspose),
     ]
 }

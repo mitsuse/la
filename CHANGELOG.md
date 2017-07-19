@@ -2,6 +2,7 @@
 
 - Replace the internal with Accelerate's BLAS.
 - Support subtraction.
+- Support any types of real number.
 
 ## 0.2.0
 

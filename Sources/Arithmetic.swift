@@ -1,3 +1,5 @@
+public typealias Arithmetic = Signed & Addition & Subtraction & Multiplication
+
 public protocol Signed {
     static prefix func - (_ a: Self) -> Self
 }
