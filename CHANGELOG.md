@@ -2,6 +2,7 @@
 
 - Replace the internal with Accelerate's BLAS.
 - Abolish protocols for arithmetic operators. They ara not good for anything.
+- Support subtraction.
 
 ## 0.2.0
 

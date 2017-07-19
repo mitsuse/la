@@ -61,6 +61,10 @@ public func + <M: Size, N: Size>(_ a: Matrix<M, N>, _ b: Matrix<M, N>) -> Matrix
     return Matrix<M, N>(la_sum(a.object, b.object))
 }
 
+public func - <M: Size, N: Size>(_ a: Matrix<M, N>, _ b: Matrix<M, N>) -> Matrix<M, N> {
+    return a + (-b)
+}
+
 public func * <M: Size, N: Size>(_ a: Float, _ b: Matrix<M, N>) -> Matrix<M, N> {
     return b * a
 }
