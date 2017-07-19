@@ -1,3 +1,3 @@
 extension Matrix where M == One, N == One {
-    public var scalar: Float { return self[0, 0] }
+    public var scalar: Real { return self[0, 0] }
 }
