@@ -1,6 +1,7 @@
 ## Unreleased
 
 - Replace the internal with Accelerate's BLAS.
+- Abolish protocols for arithmetic operators. They ara not good for anything.
 
 ## 0.2.0
 
