@@ -1,6 +1,6 @@
 import Accelerate
 
-public struct Matrix<M: Size, N: Size>: Equatable, Signed, Addition {
+public struct Matrix<M: Size, N: Size>: Equatable {
     fileprivate let object: la_object_t
 
     public var m: UInt { return M.self.value }
@@ -59,6 +59,10 @@ public func == <M: Size, N: Size>(_ a: Matrix<M, N>, _ b: Matrix<M, N>) -> Bool 
 
 public func + <M: Size, N: Size>(_ a: Matrix<M, N>, _ b: Matrix<M, N>) -> Matrix<M, N> {
     return Matrix<M, N>(la_sum(a.object, b.object))
+}
+
+public func - <M: Size, N: Size>(_ a: Matrix<M, N>, _ b: Matrix<M, N>) -> Matrix<M, N> {
+    return a + (-b)
 }
 
 public func * <M: Size, N: Size>(_ a: Float, _ b: Matrix<M, N>) -> Matrix<M, N> {

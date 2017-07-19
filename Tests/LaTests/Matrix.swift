@@ -93,6 +93,25 @@ final class MatrixTests: XCTestCase, Tests {
         XCTAssertEqual(b + a, c)
     }
 
+    func testSubstraction() {
+        let a = Matrix<Three, Two>([
+            0, -1,
+            2, -3,
+            4, -5,
+        ])!
+        let b = Matrix<Three, Two>([
+            -0, -1,
+            -2, -3,
+            -4, -5,
+        ])!
+        let c = Matrix<Three, Two>([
+            0, 0,
+            4, 0,
+            8, 0,
+        ])!
+        XCTAssertEqual(a - b, c)
+    }
+
     func testZeroAddition() {
         let a = Matrix<Three, Two>([
             0, -1,
@@ -191,6 +210,7 @@ final class MatrixTests: XCTestCase, Tests {
         ("testSubscript", testSubscript),
         ("testEquality", testEquality),
         ("testAddition", testAddition),
+        ("testSubctraction", testSubstraction),
         ("testZeroAddition", testZeroAddition),
         ("testAdditiveInverse", testAdditiveInverse),
         ("testAssociativity", testAssociativity),
