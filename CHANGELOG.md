@@ -1,5 +1,8 @@
 ## Unreleased
 
+
+## 0.3.2
+
 - Fix scalar-multiplication for Double.
 
 
