@@ -197,11 +197,41 @@ final class MatrixTests: XCTestCase, Tests {
         XCTAssertEqual(a.t, b)
     }
 
+    func testMeasureSubcript() {
+        let a = Matrix<_1000, _1000>.fill(0.1)
+        measure { _ = a[10, 2] }
+    }
+
+    func testMeasureEquality() {
+        let a = Matrix<_1000, _1000>.fill(0.1)
+        let b = Matrix<_1000, _1000>.fill(0.1)
+        measure { _ = a == b }
+    }
+
+    func testMeasureAddition() {
+        let a = Matrix<_1000, _1000>.fill(0.1)
+        measure { _ = (a + a).entities }
+    }
+
+    func testMeasureSubtraction() {
+        let a = Matrix<_1000, _1000>.fill(0.1)
+        let b = Matrix<_1000, _1000>.fill(0.3)
+        measure { _ = (a - b).entities }
+    }
+
+    func testMeasureScalarMultiplication() {
+        let a = Matrix<_1000, _1000>.fill(0.1)
+        measure { _ = (0.1 * a).entities }
+    }
+
     func testMeasureMultiplication() {
         let a = Matrix<_1000, _1000>.fill(0.1)
-        measure {
-            _ = (a * a).entities
-        }
+        measure { _ = (a * a).entities }
+    }
+
+    func testMeasureTranspose() {
+        let a = Matrix<_1000, _1000>.fill(0.1)
+        measure { _ = a.t.entities }
     }
 
     static let allTests: [(String, (MatrixTests) -> () -> ())] = [
@@ -217,6 +247,12 @@ final class MatrixTests: XCTestCase, Tests {
         ("testScalarMultiplication", testScalarMultiplication),
         ("testMultiplication", testMultiplication),
         ("testTranspose", testTranspose),
+        ("testMeasureSubcript", testMeasureSubcript),
+        ("testMeasureEquality", testMeasureEquality),
+        ("testMeasureAddition", testMeasureAddition),
+        ("testMeasureSubtraction", testMeasureSubtraction),
+        ("testMeasureScalarMultiplication", testMeasureScalarMultiplication),
         ("testMeasureMultiplication", testMeasureMultiplication),
+        ("testMeasureTranspose", testMeasureTranspose),
     ]
 }
