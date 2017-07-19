@@ -28,8 +28,9 @@ final class MeasureMatrixIntTests: XCTestCase, Tests {
     }
 
     func testMeasureScalarMultiplication() {
+        let scalar: Real = 2
         let a = Matrix<_1000, _1000, Real>.fill(Real(0.1))
-        measure { _ = (0.1 * a).entities }
+        measure { _ = (scalar * a).entities }
     }
 
     func testMeasureMultiplication() {

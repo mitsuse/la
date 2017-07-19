@@ -82,7 +82,7 @@ extension Matrix {
 }
 
 public prefix func - <M: Size, N: Size, Real: La.Real>(_ a: Matrix<M, N, Real>) -> Matrix<M, N, Real> {
-    return a * -1
+    return a * Real(Float(-1))
 }
 
 public func == <M: Size, N: Size, Real: La.Real>(_ a: Matrix<M, N, Real>, _ b: Matrix<M, N, Real>) -> Bool {
@@ -97,12 +97,18 @@ public func - <M: Size, N: Size, Real: La.Real>(_ a: Matrix<M, N, Real>, _ b: Ma
     return Matrix<M, N, Real>(la_difference(a.object, b.object))
 }
 
-public func * <M: Size, N: Size, Real: La.Real>(_ a: Float, _ b: Matrix<M, N, Real>) -> Matrix<M, N, Real> {
+public func * <M: Size, N: Size, Real: La.Real>(_ a: Real, _ b: Matrix<M, N, Real>) -> Matrix<M, N, Real> {
     return b * a
 }
 
-public func * <M: Size, N: Size, Real: La.Real>(_ b: Matrix<M, N, Real>, _ a: Float) -> Matrix<M, N, Real> {
-    return Matrix<M, N, Real>(la_scale_with_float(b.object, a))
+public func * <M: Size, N: Size, Real: La.Real>(_ b: Matrix<M, N, Real>, _ a: Real) -> Matrix<M, N, Real> {
+    let object: la_object_t
+    switch Real.self {
+    case is Double.Type: object = la_scale_with_double(b.object, a as! Double)
+    case is Float.Type: object = la_scale_with_float(b.object, a as! Float)
+    default: object = la_scale_with_float(b.object, a.float)
+    }
+    return Matrix<M, N, Real>(object)
 }
 
 public func * <M: Size, N: Size, P: Size, Real: La.Real>(_ a: Matrix<M, N, Real>, _ b: Matrix<N, P, Real>) -> Matrix<M, P, Real> {

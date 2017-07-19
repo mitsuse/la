@@ -152,17 +152,28 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testScalarMultiplication() {
-        let a: Float = 2
-        let b = Matrix<Two, Two, Float>([
+        let a1: Float = 2
+        let a2: Double = 2
+        let b1 = Matrix<Two, Two, Float>([
             6, 4,
             4, 14,
         ])!
-        let c = Matrix<Two, Two, Float>([
+        let b2 = Matrix<Two, Two, Double>([
+            6, 4,
+            4, 14,
+        ])!
+        let c1 = Matrix<Two, Two, Float>([
             12, 8,
             8, 28,
         ])!
-        XCTAssertEqual(a * b, c)
-        XCTAssertEqual(a * b, b * a)
+        let c2 = Matrix<Two, Two, Double>([
+            12, 8,
+            8, 28,
+        ])!
+        XCTAssertEqual(a1 * b1, c1)
+        XCTAssertEqual(a1 * b1, b1 * a1)
+        XCTAssertEqual(a2 * b2, c2)
+        XCTAssertEqual(a2 * b2, b2 * a2)
     }
 
     func testMultiplication() {
