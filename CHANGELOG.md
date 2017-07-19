@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Replace the internal with Accelerate's BLAS.
+
 ## 0.2.0
 
 - Support transpose.
