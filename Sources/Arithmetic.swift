@@ -1,6 +1,3 @@
-public protocol Arithmetic: Signed, Addition, Multiplication, Equatable {
-}
-
 public protocol Signed {
     static prefix func - (_ a: Self) -> Self
 }

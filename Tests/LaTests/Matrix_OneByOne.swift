@@ -4,8 +4,8 @@ import XCTest
 
 final class MatrixOneByOneTests: XCTestCase, Tests {
     func testScalar() {
-        let x = 10
-        let m = Matrix<One, One, Int>([x])!
+        let x: Float = 10
+        let m = Matrix<One, One>([x])!
         XCTAssertEqual(m.scalar, x)
     }
 
