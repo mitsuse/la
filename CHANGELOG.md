@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Just remove needless types.
+
 
 ## 0.3.0
 
