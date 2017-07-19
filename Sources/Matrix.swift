@@ -94,7 +94,7 @@ public func + <M: Size, N: Size, Real: La.Real>(_ a: Matrix<M, N, Real>, _ b: Ma
 }
 
 public func - <M: Size, N: Size, Real: La.Real>(_ a: Matrix<M, N, Real>, _ b: Matrix<M, N, Real>) -> Matrix<M, N, Real> {
-    return a + (-b)
+    return Matrix<M, N, Real>(la_difference(a.object, b.object))
 }
 
 public func * <M: Size, N: Size, Real: La.Real>(_ a: Float, _ b: Matrix<M, N, Real>) -> Matrix<M, N, Real> {
