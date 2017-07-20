@@ -40,13 +40,13 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testEntities() {
-        let entities: [Float] = [
+        let entries: [Float] = [
             0, 1,
             2, 3,
             4, 5,
         ]
-        let a = Matrix<Three, Two, Float>(entities)!
-        XCTAssertEqual(a.entities, entities)
+        let a = Matrix<Three, Two, Float>(entries)!
+        XCTAssertEqual(a.entries, entries)
     }
 
     func testSubscript() {
