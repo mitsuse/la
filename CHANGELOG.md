@@ -1,5 +1,8 @@
 ## Unreleased
 
+
+## 0.4.0
+
 - Rename `entities` to `entries`.
 - Rename size type `One` to `_1`.
 - Add typealias for row vector and column vector.
