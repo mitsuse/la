@@ -1,0 +1,10 @@
+language: swift
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode8.3
+install:
+  - swift --version
+  - swift package fetch
+script:
+  - swift test
