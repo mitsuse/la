@@ -1,6 +1,7 @@
 ## Unreleased
 
 - Rename `entities` to `entries`.
+- Rename size type `One` to `_1`.
 
 
 ## 0.3.2
