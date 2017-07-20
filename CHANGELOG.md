@@ -3,6 +3,7 @@
 - Rename `entities` to `entries`.
 - Rename size type `One` to `_1`.
 - Add typealias for row vector and column vector.
+- Add an extension for type of N x N matrix to create `identity` matrix.
 
 
 ## 0.3.2
