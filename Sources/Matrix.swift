@@ -6,7 +6,7 @@ public struct Matrix<M: Size, N: Size, Real: La.Real>: Equatable, Signed, Additi
     public var m: UInt { return M.self.value }
     public var n: UInt { return N.self.value }
 
-    public var entities: [Real] {
+    public var entries: [Real] {
         switch Real.self {
         case is Double.Type:
             var value = Array<Double>(repeating: 0, count: Int(M.value * N.value))
@@ -28,18 +28,18 @@ public struct Matrix<M: Size, N: Size, Real: La.Real>: Equatable, Signed, Additi
     }
 
     public subscript(_ i: UInt, _ j: UInt) -> Real {
-        return entities[Int(i * n + j)]
+        return entries[Int(i * n + j)]
     }
 }
 
 extension Matrix {
-    public init?(_ entities: [Real]) {
-        guard UInt(entities.count) == M.value * N.value && M.value > 0 && N.value > 0 else { return nil }
+    public init?(_ entries: [Real]) {
+        guard UInt(entries.count) == M.value * N.value && M.value > 0 && N.value > 0 else { return nil }
         let object: la_object_t
         switch Real.self {
         case is Double.Type:
             object = la_matrix_from_double_buffer(
-                entities as! [Double],
+                entries as! [Double],
                 M.value,
                 N.value,
                 N.value,
@@ -48,7 +48,7 @@ extension Matrix {
             )
         case is Float.Type:
             object = la_matrix_from_float_buffer(
-                entities as! [Float],
+                entries as! [Float],
                 M.value,
                 N.value,
                 N.value,
@@ -57,7 +57,7 @@ extension Matrix {
             )
         default:
             object = la_matrix_from_float_buffer(
-                entities.map { $0.float },
+                entries.map { $0.float },
                 M.value,
                 N.value,
                 N.value,
@@ -86,7 +86,7 @@ public prefix func - <M: Size, N: Size, Real: La.Real>(_ a: Matrix<M, N, Real>) 
 }
 
 public func == <M: Size, N: Size, Real: La.Real>(_ a: Matrix<M, N, Real>, _ b: Matrix<M, N, Real>) -> Bool {
-    return a.entities == b.entities
+    return a.entries == b.entries
 }
 
 public func + <M: Size, N: Size, Real: La.Real>(_ a: Matrix<M, N, Real>, _ b: Matrix<M, N, Real>) -> Matrix<M, N, Real> {
