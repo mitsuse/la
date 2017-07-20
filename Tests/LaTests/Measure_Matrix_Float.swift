@@ -18,28 +18,28 @@ final class MeasureMatrixFloatTests: XCTestCase, Tests {
 
     func testMeasureAddition() {
         let a = Matrix<_1000, _1000, Real>.fill(Real(0.1))
-        measure { _ = (a + a).entities }
+        measure { _ = (a + a).entries }
     }
 
     func testMeasureSubtraction() {
         let a = Matrix<_1000, _1000, Real>.fill(Real(0.1))
         let b = Matrix<_1000, _1000, Real>.fill(Real(0.3))
-        measure { _ = (a - b).entities }
+        measure { _ = (a - b).entries }
     }
 
     func testMeasureScalarMultiplication() {
         let a = Matrix<_1000, _1000, Real>.fill(Real(0.1))
-        measure { _ = (0.1 * a).entities }
+        measure { _ = (0.1 * a).entries }
     }
 
     func testMeasureMultiplication() {
         let a = Matrix<_1000, _1000, Real>.fill(Real(0.1))
-        measure { _ = (a * a).entities }
+        measure { _ = (a * a).entries }
     }
 
     func testMeasureTranspose() {
         let a = Matrix<_1000, _1000, Real>.fill(Real(0.1))
-        measure { _ = a.t.entities }
+        measure { _ = a.t.entries }
     }
 
     static let allTests: [(String, (MeasureMatrixFloatTests) -> () -> ())] = [

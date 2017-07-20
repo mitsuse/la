@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Rename `entities` to `entries`.
+
 
 ## 0.3.2
 
