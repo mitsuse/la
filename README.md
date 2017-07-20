@@ -23,7 +23,7 @@ For Swift Package Manager:
 let package = Package(
     name: "YourProject",
     dependencies: [
-        .Package(url: "https://github.com/mitsuse/la", majorVersion: 0, minor: 3, patch: 2),
+        .Package(url: "https://github.com/mitsuse/la", majorVersion: 0, minor: 4, patch: 0),
     ]
 )
 ```
@@ -34,7 +34,7 @@ For CocoaPods:
 use_frameworks!
 
 target 'YourProject' do
-  pod 'La', :git => 'https://github.com/mitsuse/la.git', :tag => '0.3.2'
+  pod 'La', :git => 'https://github.com/mitsuse/la.git', :tag => '0.4.0'
 end
 ```
 
