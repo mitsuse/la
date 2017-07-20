@@ -92,7 +92,7 @@ you can bind the result of calculation or the value given as input such as a com
 
 The following snippet is an example of lazy-evaluated size value for feature extraction.
 
-```
+```swift
 import Foundation
 import La
 
