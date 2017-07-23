@@ -4,32 +4,32 @@ import XCTest
 
 final class MatrixTests: XCTestCase, Tests {
     func testCreate() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let b = Matrix<_3, _2, Float>([
+        let b = Matrix<_3, _2, Float>.create([
             0, 1,
             2, 3,
         ])
-        let c = Matrix<_3, _2, Float>([
+        let c = Matrix<_3, _2, Float>.create([
             0,
             2,
             4,
         ])
-        let d = Matrix<_2, _2, Float>([
+        let d = Matrix<_2, _2, Float>.create([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let e = Matrix<_3, _1, Float>([
+        let e = Matrix<_3, _1, Float>.create([
             0, 1,
             2, 3,
             4, 5,
         ])
-        let f = Matrix<_0, _1, Float>([])
-        let g = Matrix<_1, _0, Float>([])
+        let f = Matrix<_0, _1, Float>.create([])
+        let g = Matrix<_1, _0, Float>.create([])
         XCTAssertNotNil(a)
         XCTAssertNil(b)
         XCTAssertNil(c)
@@ -45,12 +45,12 @@ final class MatrixTests: XCTestCase, Tests {
             2, 3,
             4, 5,
         ]
-        let a = Matrix<_3, _2, Float>(entries)!
+        let a = Matrix<_3, _2, Float>.create(entries)!
         XCTAssertEqual(a.entries, entries)
     }
 
     func testSubscript() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, 1,
             2, 3,
             4, 5,
@@ -59,12 +59,12 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testEquality() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, 1,
             2, 3,
             4, 5,
         ])!
-        let b = Matrix<_3, _2, Float>([
+        let b = Matrix<_3, _2, Float>.create([
             0, 1,
             2, 3,
             4, 5,
@@ -74,17 +74,17 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testAddition() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, -1,
             2, -3,
             4, -5,
         ])!
-        let b = Matrix<_3, _2, Float>([
+        let b = Matrix<_3, _2, Float>.create([
             0, 1,
             2, 3,
             4, 5,
         ])!
-        let c = Matrix<_3, _2, Float>([
+        let c = Matrix<_3, _2, Float>.create([
             0, 0,
             4, 0,
             8, 0,
@@ -94,17 +94,17 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testSubstraction() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, -1,
             2, -3,
             4, -5,
         ])!
-        let b = Matrix<_3, _2, Float>([
+        let b = Matrix<_3, _2, Float>.create([
             -0, -1,
             -2, -3,
             -4, -5,
         ])!
-        let c = Matrix<_3, _2, Float>([
+        let c = Matrix<_3, _2, Float>.create([
             0, 0,
             4, 0,
             8, 0,
@@ -113,7 +113,7 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func test_0Addition() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, -1,
             2, -3,
             4, -5,
@@ -123,7 +123,7 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testAdditiveInverse() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, -1,
             2, -3,
             4, -5,
@@ -133,17 +133,17 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testAssociativity() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, -1,
             2, -3,
             4, -5,
         ])!
-        let b = Matrix<_3, _2, Float>([
+        let b = Matrix<_3, _2, Float>.create([
             0, 1,
             2, 3,
             4, 5,
         ])!
-        let c = Matrix<_3, _2, Float>([
+        let c = Matrix<_3, _2, Float>.create([
             1, 2,
             3, 4,
             5, 6,
@@ -154,19 +154,19 @@ final class MatrixTests: XCTestCase, Tests {
     func testScalarMultiplication() {
         let a1: Float = 2
         let a2: Double = 2
-        let b1 = Matrix<_2, _2, Float>([
+        let b1 = Matrix<_2, _2, Float>.create([
             6, 4,
             4, 14,
         ])!
-        let b2 = Matrix<_2, _2, Double>([
+        let b2 = Matrix<_2, _2, Double>.create([
             6, 4,
             4, 14,
         ])!
-        let c1 = Matrix<_2, _2, Float>([
+        let c1 = Matrix<_2, _2, Float>.create([
             12, 8,
             8, 28,
         ])!
-        let c2 = Matrix<_2, _2, Double>([
+        let c2 = Matrix<_2, _2, Double>.create([
             12, 8,
             8, 28,
         ])!
@@ -177,17 +177,17 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testMultiplication() {
-        let a = Matrix<_3, _3, Float>([
+        let a = Matrix<_3, _3, Float>.create([
             1, 1, 2,
             1, 2, 3,
             1, 4, 9,
         ])!
-        let b = Matrix<_3, _2, Float>([
+        let b = Matrix<_3, _2, Float>.create([
             0, 1,
             1, -1,
             2, 0,
         ])!
-        let c = Matrix<_3, _2, Float>([
+        let c = Matrix<_3, _2, Float>.create([
             5, 0,
             8, -1,
             22, -3,
@@ -196,12 +196,12 @@ final class MatrixTests: XCTestCase, Tests {
     }
 
     func testTranspose() {
-        let a = Matrix<_3, _2, Float>([
+        let a = Matrix<_3, _2, Float>.create([
             0, 1,
             2, 3,
             4, 5,
         ])!
-        let b = Matrix<_2, _3, Float>([
+        let b = Matrix<_2, _3, Float>.create([
             0, 2, 4,
             1, 3, 5,
         ])
