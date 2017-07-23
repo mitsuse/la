@@ -1,6 +1,8 @@
 ## Unreleased
 
 - Rename `init` to `create`. It will conflict to other initializers in the future.
+- Support `Double` and `Float` as `Real` parameter.
+- `Matrix` doesn't conform `Equatable`.
 
 
 ## 0.4.0

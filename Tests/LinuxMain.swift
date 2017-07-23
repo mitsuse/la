@@ -5,5 +5,6 @@ import XCTest
 XCTMain([
     testCase(Matrix1x1Tests.allTests),
     testCase(MatrixNxNTests.allTests),
-    testCase(MatrixTests.allTests),
+    testCase(MatrixDoubleTests.allTests),
+    testCase(MatrixFloatTests.allTests),
 ])
