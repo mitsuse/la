@@ -22,11 +22,11 @@ final class MatrixNxNTests: XCTestCase, Tests {
             -1,  2,
         ])!
         let i = Matrix<_2, _2, Float>.identity()
-        XCTAssertEqual(a * x, i)
-        XCTAssertEqual(x * a, i)
-        XCTAssertEqual(a * i, a)
-        XCTAssertEqual(i * a, a)
-        XCTAssertEqual(a * i, a)
+        XCTAssertTrue(a * x == i)
+        XCTAssertTrue(x * a == i)
+        XCTAssertTrue(a * i == a)
+        XCTAssertTrue(i * a == a)
+        XCTAssertTrue(a * i == a)
     }
 
     static let allTests: [(String, (MatrixNxNTests) -> () -> ())] = [
