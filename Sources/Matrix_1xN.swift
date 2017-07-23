@@ -1,1 +1,1 @@
-public typealias RowVector<N: Size, Real> = Matrix<_1, N, Real>
+public typealias RowVector<N: Size, Field: La.Field> = Matrix<_1, N, Field>
