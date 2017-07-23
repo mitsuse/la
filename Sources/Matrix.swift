@@ -6,29 +6,8 @@ public struct Matrix<M: Size, N: Size, Real: La.Real>: Equatable, Signed, Additi
     public var m: UInt { return M.self.value }
     public var n: UInt { return N.self.value }
 
-    public var entries: [Real] {
-        switch Real.self {
-        case is Double.Type:
-            var value = Array<Double>(repeating: 0, count: Int(M.value * N.value))
-            la_matrix_to_double_buffer(&value, N.value, object)
-            return value as! [Real]
-        case is Float.Type:
-            var value = Array<Float>(repeating: 0, count: Int(M.value * N.value))
-            la_matrix_to_float_buffer(&value, N.value, object)
-            return value as! [Real]
-        default:
-            var value = Array<Float>(repeating: 0, count: Int(M.value * N.value))
-            la_matrix_to_float_buffer(&value, N.value, object)
-            return value.map { Real($0) }
-        }
-    }
-
     init(_ object: la_object_t) {
         self.object = object
-    }
-
-    public subscript(_ i: UInt, _ j: UInt) -> Real {
-        return entries[Int(i * n + j)]
     }
 }
 
@@ -68,16 +47,39 @@ extension Matrix {
         return Matrix(object)
     }
 
-    public var t: Matrix<N, M, Real> {
-        return Matrix<N, M, Real>(la_transpose(object))
-    }
-
     public static func zeros() -> Matrix<M, N, Real> {
         return fill(Real.zero)
     }
 
     public static func fill(_ entity: Real) -> Matrix<M, N, Real> {
         return Matrix.create(Array(repeating: entity, count: Int(M.value * N.value)))!
+    }
+}
+
+extension Matrix {
+    public var entries: [Real] {
+        switch Real.self {
+        case is Double.Type:
+            var value = Array<Double>(repeating: 0, count: Int(M.value * N.value))
+            la_matrix_to_double_buffer(&value, N.value, object)
+            return value as! [Real]
+        case is Float.Type:
+            var value = Array<Float>(repeating: 0, count: Int(M.value * N.value))
+            la_matrix_to_float_buffer(&value, N.value, object)
+            return value as! [Real]
+        default:
+            var value = Array<Float>(repeating: 0, count: Int(M.value * N.value))
+            la_matrix_to_float_buffer(&value, N.value, object)
+            return value.map { Real($0) }
+        }
+    }
+
+    public var t: Matrix<N, M, Real> {
+        return Matrix<N, M, Real>(la_transpose(object))
+    }
+
+    public subscript(_ i: UInt, _ j: UInt) -> Real {
+        return entries[Int(i * n + j)]
     }
 }
 
