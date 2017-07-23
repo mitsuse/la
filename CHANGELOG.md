@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Rename `init` to `create`. It will conflict to other initializers in the future.
+
 
 ## 0.4.0
 

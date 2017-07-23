@@ -33,7 +33,7 @@ public struct Matrix<M: Size, N: Size, Real: La.Real>: Equatable, Signed, Additi
 }
 
 extension Matrix {
-    public init?(_ entries: [Real]) {
+    public static func create(_ entries: [Real]) -> Matrix<M, N, Real>? {
         guard UInt(entries.count) == M.value * N.value && M.value > 0 && N.value > 0 else { return nil }
         let object: la_object_t
         switch Real.self {
@@ -65,7 +65,7 @@ extension Matrix {
                 la_attribute_t(LA_DEFAULT_ATTRIBUTES)
             )
         }
-        self.init(object)
+        return Matrix(object)
     }
 
     public var t: Matrix<N, M, Real> {
@@ -77,7 +77,7 @@ extension Matrix {
     }
 
     public static func fill(_ entity: Real) -> Matrix<M, N, Real> {
-        return Matrix(Array(repeating: entity, count: Int(M.value * N.value)))!
+        return Matrix.create(Array(repeating: entity, count: Int(M.value * N.value)))!
     }
 }
 

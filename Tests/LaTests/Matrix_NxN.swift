@@ -4,7 +4,7 @@ import XCTest
 
 final class MatrixNxNTests: XCTestCase, Tests {
     func testOrder() {
-        let a = Matrix<_2, _2, Float>([
+        let a = Matrix<_2, _2, Float>.create([
             0, 1,
             2, 3,
         ])!
@@ -13,11 +13,11 @@ final class MatrixNxNTests: XCTestCase, Tests {
     }
 
     func testIdentity() {
-        let a = Matrix<_2, _2, Float>([
+        let a = Matrix<_2, _2, Float>.create([
             2, 5,
             1, 3,
         ])!
-        let x = Matrix<_2, _2, Float>([
+        let x = Matrix<_2, _2, Float>.create([
              3, -5,
             -1,  2,
         ])!
