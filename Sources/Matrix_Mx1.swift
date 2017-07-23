@@ -1,1 +1,1 @@
-public typealias ColumnVector<M: Size, Real> = Matrix<M, _1, Real>
+public typealias ColumnVector<M: Size, Field: La.Field> = Matrix<M, _1, Field>
