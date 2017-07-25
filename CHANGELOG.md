@@ -2,6 +2,9 @@
 
 - Rename `init` to `create`. It will conflict to other initializers in the future.
 - Support `Double` and `Float` as `Field` parameter.
+- Use BLAS directly instead of `la_object_t`.
+    - This is the first step for Linux support.
+    - Lazy operations feature is removed temporarily. The feature is provided by `la_object_t`.
 
 
 ## 0.4.0
