@@ -1,26 +1,37 @@
 import Accelerate
 
 public struct Matrix<M: Size, N: Size, Field: La.Field>: Equatable {
-    let object: la_object_t
+    public let entries: [Field]
 
-    public var m: UInt { return M.self.value }
-    public var n: UInt { return N.self.value }
+    public var m: Int32 { return M.self.value }
+    public var n: Int32 { return N.self.value }
 
-    init(_ object: la_object_t) {
-        self.object = object
+    init(_ entries: [Field]) {
+        self.entries = entries
+    }
+
+    public subscript(_ i: Int32, _ j: Int32) -> Field {
+        return entries[Int(i * n + j)]
     }
 }
 
 extension Matrix {
-    public static func create(_ entries: [Field]) -> Matrix<M, N, Field>? { return Field.matrix_create(entries) }
-    public static func fill(_ entity: Field) -> Matrix<M, N, Field> { return Matrix.create(Array(repeating: entity, count: Int(M.value * N.value)))! }
-    public static func zeros() -> Matrix<M, N, Field> { return fill(Field.zero) }
+    public static func create(_ entries: [Field]) -> Matrix<M, N, Field>? {
+        guard Int32(entries.count) == M.value * N.value && M.value > 0 && N.value > 0 else { return nil }
+        return Matrix(entries)
+    }
+
+    public static func fill(_ entity: Field) -> Matrix<M, N, Field> {
+        return Matrix(Array(repeating: entity, count: Int(M.value * N.value)))
+    }
+
+    public static func zeros() -> Matrix<M, N, Field> {
+        return fill(Field.zero)
+    }
 }
 
 extension Matrix {
-    public var entries: [Field] { return Field.matrix_entries(of: self) }
     public var t: Matrix<N, M, Field> { return Field.matrix_transpose(self) }
-    public subscript(_ i: UInt, _ j: UInt) -> Field { return entries[Int(i * n + j)] }
 }
 
 public prefix func - <M: Size, N: Size, Field: La.Field>(_ a: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return Field.matrix_additiveInvese(of: a) }

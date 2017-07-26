@@ -3,5 +3,5 @@ extension Matrix where M == N {
 }
 
 extension Matrix where M == N {
-    public var order: UInt { return n }
+    public var order: Int32 { return n }
 }

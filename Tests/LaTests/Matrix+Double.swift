@@ -69,8 +69,8 @@ final class MatrixDoubleTests: XCTestCase, Tests {
             2, 3,
             4, 5,
             ])!
-        XCTAssertTrue(a == b)
-        XCTAssertTrue(b == a)
+        XCTAssertEqual(a, b)
+        XCTAssertEqual(b, a)
     }
 
     func testAddition() {
@@ -89,8 +89,8 @@ final class MatrixDoubleTests: XCTestCase, Tests {
             4, 0,
             8, 0,
             ])!
-        XCTAssertTrue(a + b == c)
-        XCTAssertTrue(b + a == c)
+        XCTAssertEqual(a + b, c)
+        XCTAssertEqual(b + a, c)
     }
 
     func testSubstraction() {
@@ -109,17 +109,17 @@ final class MatrixDoubleTests: XCTestCase, Tests {
             4, 0,
             8, 0,
             ])!
-        XCTAssertTrue(a - b == c)
+        XCTAssertEqual(a - b, c)
     }
 
-    func test_0Addition() {
+    func testZeroAddition() {
         let a = Matrix<_3, _2, Double>.create([
             0, -1,
             2, -3,
             4, -5,
             ])!
         let z = Matrix<_3, _2, Double>.zeros()
-        XCTAssertTrue(a + z == a)
+        XCTAssertEqual(a + z, a)
     }
 
     func testAdditiveInverse() {
@@ -129,7 +129,7 @@ final class MatrixDoubleTests: XCTestCase, Tests {
             4, -5,
             ])!
         let inverse = -a
-        XCTAssertTrue(a + inverse == Matrix<_3, _2, Double>.zeros())
+        XCTAssertEqual(a + inverse, Matrix<_3, _2, Double>.zeros())
     }
 
     func testAssociativity() {
@@ -150,17 +150,12 @@ final class MatrixDoubleTests: XCTestCase, Tests {
             ])!
         let left = (a + b) + c
         let right = a + (b + c)
-        XCTAssertTrue(left == right)
+        XCTAssertEqual(left, right)
     }
 
     func testScalarMultiplication() {
         let a1: Double = 2
-        let a2: Double = 2
         let b1 = Matrix<_2, _2, Double>.create([
-            6, 4,
-            4, 14,
-            ])!
-        let b2 = Matrix<_2, _2, Double>.create([
             6, 4,
             4, 14,
             ])!
@@ -168,14 +163,8 @@ final class MatrixDoubleTests: XCTestCase, Tests {
             12, 8,
             8, 28,
             ])!
-        let c2 = Matrix<_2, _2, Double>.create([
-            12, 8,
-            8, 28,
-            ])!
-        XCTAssertTrue(a1 * b1 == c1)
-        XCTAssertTrue(a1 * b1 == b1 * a1)
-        XCTAssertTrue(a2 * b2 == c2)
-        XCTAssertTrue(a2 * b2 == b2 * a2)
+        XCTAssertEqual(a1 * b1, c1)
+        XCTAssertEqual(a1 * b1, b1 * a1)
     }
 
     func testMultiplication() {
@@ -194,7 +183,17 @@ final class MatrixDoubleTests: XCTestCase, Tests {
             8, -1,
             22, -3,
             ])!
-        XCTAssertTrue(a * b == c)
+        XCTAssertEqual(a * b, c)
+    }
+
+    func testIdentity() {
+        let a = Matrix<_3, _2, Double>.create([
+            0, 1,
+            1, -1,
+            2, 0,
+            ])!
+        let i = Matrix<_2, _2, Double>.identity()
+        XCTAssertEqual(a * i, a)
     }
 
     func testTranspose() {
@@ -207,7 +206,7 @@ final class MatrixDoubleTests: XCTestCase, Tests {
             0, 2, 4,
             1, 3, 5,
             ])!
-        XCTAssertTrue(a.t == b)
+        XCTAssertEqual(a.t, b)
     }
 
     static let allTests: [(String, (MatrixDoubleTests) -> () -> ())] = [
@@ -217,11 +216,12 @@ final class MatrixDoubleTests: XCTestCase, Tests {
         ("testEquality", testEquality),
         ("testAddition", testAddition),
         ("testSubctraction", testSubstraction),
-        ("test_0Addition", test_0Addition),
+        ("testZeroAddition", testZeroAddition),
         ("testAdditiveInverse", testAdditiveInverse),
         ("testAssociativity", testAssociativity),
         ("testScalarMultiplication", testScalarMultiplication),
         ("testMultiplication", testMultiplication),
+        ("testIdentity", testIdentity),
         ("testTranspose", testTranspose),
-    ]
+        ]
 }
