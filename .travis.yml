@@ -5,6 +5,5 @@ matrix:
       osx_image: xcode8.3
 install:
   - swift --version
-  - swift package fetch
 script:
   - swift build
