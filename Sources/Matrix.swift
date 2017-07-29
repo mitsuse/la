@@ -1,5 +1,3 @@
-import Accelerate
-
 public struct Matrix<M: Size, N: Size, Field: La.Field>: Equatable {
     public let entries: [Field]
 
