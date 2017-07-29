@@ -7,4 +7,4 @@ install:
   - swift --version
   - swift package fetch
 script:
-  - swift test
+  - swift build
