@@ -1,5 +1,8 @@
 ## Unreleased
 
+
+## 0.6.0
+
 - Move implementations of `Field` to [la-accelerate][github-la-accelerate].
 
 [github-la-accelerate]: https://github.com/mitsuse/la-accelerate
