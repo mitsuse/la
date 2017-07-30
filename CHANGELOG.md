@@ -1,6 +1,11 @@
 ## Unreleased
 
 
+## 0.6.1
+
+- Fix the podspec.
+
+
 ## 0.6.0
 
 - Move implementations of `Field` to [la-accelerate][github-la-accelerate].
