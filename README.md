@@ -7,6 +7,21 @@
 A library for linear algebra with type-safety written in Swift.
 
 
+## Matrix Operations
+
+La doesn't provide the implementation of matrix operations.
+This package just provides a matrix type and the interface of operations.
+
+You need to import one of implementations for matrix operations:
+
+- [la-accelerate][github-la-accelerate]: Accelerate (Apple's BLAS)
+- [la-openblas (under development)][github-la-openblas]: OpenBLAS
+
+
+[github-la-accelerate]: https://github.com/mitsuse/la-accelerate
+[github-la-openblas]: https://github.com/mitsuse/la-openblas
+
+
 ## License
 
 The content of this repository are licensed under the MIT License unless otherwise noted.
