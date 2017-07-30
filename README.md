@@ -13,6 +13,38 @@ A library for linear algebra with type-safety written in Swift.
 - Performance: Use highly-optimized implementations for the backend.
 
 
+## Installation
+
+### Swift Pacakge Manager
+
+Add `La` and `LaAccelerate` into dependencies:
+
+```swift
+// Package.swift
+import PackageDescription
+
+let package = Package(
+    name: "YourPackage",
+    dependencies: [
+        .Package(url: "https://github.com/mitsuse/la", majorVersion: 0, minor: 6),
+        .Package(url: "https://github.com/mitsuse/la-accelerate", majorVersion: 0, minor: 6),
+    ]
+)
+```
+
+
+### CocoaPods
+
+Add the following lines into your `Podfile`:
+
+```ruby
+source 'https://github.com/mitsuse/pods-la.git'
+
+Pod 'La', '~> 0.6.1'
+Pod 'LaAccelerate', '~> 0.6.1'
+```
+
+
 ## Matrix Operations
 
 La doesn't provide the implementation of matrix operations.
