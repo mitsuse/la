@@ -7,6 +7,12 @@
 A library for linear algebra with type-safety written in Swift.
 
 
+## Motivations
+
+- Type-safety: Detect undefined operations in compile time.
+- Performance: Use highly-optimized implementations for the backend.
+
+
 ## Matrix Operations
 
 La doesn't provide the implementation of matrix operations.
