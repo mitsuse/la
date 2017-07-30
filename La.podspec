@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'La'
-  spec.version = '0.6.0'
+  spec.version = '0.6.1'
   spec.homepage = 'https://github.com/mitsuse/la'
   spec.authors = {
     'Tomoya Kose' => 'tomoya@mitsuse.jp'
