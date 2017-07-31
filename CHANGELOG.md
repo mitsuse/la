@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Simplify Dockerfile. Remove needless packages to build and test.
+
 
 ## 0.6.1
 
