@@ -13,6 +13,54 @@ A library for linear algebra with type-safety written in Swift.
 - Performance: Use highly-optimized implementations for the backend.
 
 
+## Examples
+
+La rejects undefined operations in compile-time:
+
+```swift
+import La
+import LaAccelerate
+
+enum _2: Size { static let value: Int32 = 2 }
+enum _3: Size { static let value: Int32 = 3 }
+
+let a = Matrix<_2, _3, Double>([
+    0, 1, 2,
+    3, 4, 5,
+])!
+
+let b = Matrix<_2, _3, Double>([
+    0, 1, 2,
+    3, 4, 5,
+])!
+
+let c = Matrix<_3, _2, Double>([
+    0, 1,
+    2, 3,
+    4, 5,
+])!
+
+_ = a + b // OK.
+_ = a + c // This casuese a compile-tim error because the size of `a` is not same as the one of `c`.
+```
+
+You can decide sizes in run-time with lazy-evaluation based on input such as environment variables or files:
+
+```swift
+import Foundation
+
+import La
+
+enum N: Size {
+    // Constants defined with `statc let` are lazily-evaluated in Swift.
+    static let value: Int32 = Int(ProcessInfo.processInfo.environment["MATRIX_SIZE_M"])!
+}
+
+// `N.value` is decided here in run-time.
+_ = Matrix<_1, N, Double>.zeros() // 1 x N zero matrix
+```
+
+
 ## Installation
 
 ### Swift Pacakge Manager
