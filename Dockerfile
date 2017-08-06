@@ -4,10 +4,6 @@ LABEL maintainer="tomoya@mitsuse.jp"
 
 USER root
 
-RUN apt-get update -q && \
-    apt-get install -q -y \
-    libopenblas-dev
-
 RUN useradd -g users -G sudo -s /bin/bash -m developer
 
 # Workaround: https://github.com/swiftdocker/docker-swift/issues/70

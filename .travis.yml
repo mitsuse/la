@@ -1,10 +1,11 @@
-language: swift
 matrix:
   include:
     - os: osx
       osx_image: xcode8.3
-install:
-  - swift --version
+      language: swift
+    - os: linux
+      sudo: required
+services:
+  - docker
 script:
-  - pod lib lint --allow-warnings --sources='https://github.com/mitsuse/pods-la.git' --verbose
-  - swift build
+  - Scripts/build

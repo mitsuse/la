@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ $(uname) = 'Darwin' ]; then
+    swift --version
+    pod lib lint --allow-warnings --sources='https://github.com/mitsuse/pods-la.git' --verbose
+    swift build
+else
+    docker build -t swift .
+
+    # Workaround: Use root instead of developer.
+    # - docker run -u developer -v $TRAVIS_BUILD_DIR:/mnt/project swift swift test -C /mnt/project
+    docker run -v $TRAVIS_BUILD_DIR:/mnt/project swift swift test -C /mnt/project
+fi
