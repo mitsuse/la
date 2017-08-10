@@ -32,10 +32,10 @@ extension Matrix {
     public var t: Matrix<N, M, Field> { return Field.matrix_transpose(self) }
 }
 
-public prefix func - <M: Size, N: Size, Field: La.Field>(_ a: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return Field.matrix_additiveInvese(of: a) }
-public func == <M: Size, N: Size, Field: La.Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<M, N, Field>) -> Bool { return a.entries == b.entries }
-public func + <M: Size, N: Size, Field: La.Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return Field.matrix_add(a, b) }
-public func - <M: Size, N: Size, Field: La.Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return Field.matrix_subtract(a, b) }
-public func * <M: Size, N: Size, Field: La.Field>(_ a: Field, _ b: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return b * a }
-public func * <M: Size, N: Size, Field: La.Field>(_ b: Matrix<M, N, Field>, _ a: Field) -> Matrix<M, N, Field> { return Field.matrix_scalar(b, a) }
-public func * <M: Size, N: Size, P: Size, Field: La.Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<N, P, Field>) -> Matrix<M, P, Field> { return Field.matrix_multiply(a, b) }
+public prefix func - <M, N, Field>(_ a: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return Field.matrix_additiveInvese(of: a) }
+public func == <M, N, Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<M, N, Field>) -> Bool { return a.entries == b.entries }
+public func + <M, N, Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return Field.matrix_add(a, b) }
+public func - <M, N, Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return Field.matrix_subtract(a, b) }
+public func * <M, N, Field>(_ a: Field, _ b: Matrix<M, N, Field>) -> Matrix<M, N, Field> { return b * a }
+public func * <M, N, Field>(_ b: Matrix<M, N, Field>, _ a: Field) -> Matrix<M, N, Field> { return Field.matrix_scalar(b, a) }
+public func * <M, N, P, Field>(_ a: Matrix<M, N, Field>, _ b: Matrix<N, P, Field>) -> Matrix<M, P, Field> { return Field.matrix_multiply(a, b) }

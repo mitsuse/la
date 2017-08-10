@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Codec",
+        "repositoryURL": "https://github.com/mitsuse/codec-swift",
+        "state": {
+          "branch": null,
+          "revision": "ca20df218112ec255d65aa02f6265fb5b73f38e5",
+          "version": "0.3.0"
+        }
+      },
+      {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result",
+        "state": {
+          "branch": null,
+          "revision": "c8446185238659a2b27c0261f64ff1254291d07d",
+          "version": "3.2.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
