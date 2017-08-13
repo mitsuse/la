@@ -9,5 +9,5 @@ else
 
     # Workaround: Use root instead of developer.
     # - docker run -u developer -v $TRAVIS_BUILD_DIR:/mnt/project swift swift test -C /mnt/project
-    docker run -v $TRAVIS_BUILD_DIR:/mnt/project swift swift test -C /mnt/project
+    docker run -v $TRAVIS_BUILD_DIR:/mnt/project swift swift test --package-path /mnt/project
 fi
