@@ -1,5 +1,8 @@
 ## Unreleased
 
+
+## 0.7.0
+
 - Simplify Dockerfile. Remove needless packages to build and test.
 - Migrate to Swift 4.
 
