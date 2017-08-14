@@ -2,11 +2,12 @@
 
 if [ $(uname) = 'Darwin' ]; then
     swift --version
-    swift build --verbose
+    pod lib lint --allow-warnings --sources='https://github.com/CocoaPods/Specs.git,https://github.com/mitsuse/pods-la.git' --verbose
+    swift build
 else
     docker build -t swift .
 
     # Workaround: Use root instead of developer.
-    # - docker run -u developer -v $TRAVIS_BUILD_DIR:/mnt/project swift swift test --verbose --package-path /mnt/project
-    docker run -v $TRAVIS_BUILD_DIR:/mnt/project swift swift build --verbose --package-path /mnt/project
+    # - docker run -u developer -v $TRAVIS_BUILD_DIR:/mnt/project swift swift test -C /mnt/project
+    docker run -v $TRAVIS_BUILD_DIR:/mnt/project swift swift test --package-path /mnt/project
 fi

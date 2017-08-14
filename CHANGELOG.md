@@ -1,13 +1,10 @@
 ## Unreleased
 
-- Migrate to Swift 4.
-    - Remove CocoaPods support temporarily.
-
 
 ## 0.7.0
 
 - Simplify Dockerfile. Remove needless packages to build and test.
-- Build with Xcode 9.0.
+- Migrate to Swift 4.
 
 
 ## 0.6.1
