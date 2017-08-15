@@ -2,7 +2,6 @@
 
 if [ $(uname) = 'Darwin' ]; then
     swift --version
-    pod lib lint --allow-warnings --sources='https://github.com/CocoaPods/Specs.git,https://github.com/mitsuse/pods-la.git' --verbose
     swift build
 else
     docker build -t swift .

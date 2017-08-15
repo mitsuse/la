@@ -1,5 +1,8 @@
 ## Unreleased
 
+- Migrate to Swift 4.
+    - Remove support for CocoaPods temporarily.
+
 
 ## 0.7.0
 
