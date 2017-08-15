@@ -1,5 +1,9 @@
 ## Unreleased
 
+- Fix the pacakge description.
+    - La should be available as a library.
+
+
 ## 0.9.0
 
 - Migrate to Swift 4.
